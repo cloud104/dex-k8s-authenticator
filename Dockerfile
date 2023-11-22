@@ -16,8 +16,6 @@ RUN go mod download
 
 COPY . .
 
-ENV ARCH=${ARCH}
-
 RUN make build
 
 FROM ${ARCH}alpine:3.18.4
