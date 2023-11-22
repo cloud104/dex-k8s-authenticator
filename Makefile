@@ -2,7 +2,7 @@ GOBIN=$(shell pwd)/bin
 GOFILES=$(wildcard *.go)
 GONAME=dex-k8s-authenticator
 REGISTRY=us-docker.pkg.dev/tks-gcr-pub/tks-dex-k8s-authenticator
-TAG=latest
+TAG ?= latest
 
 all: build 
 
