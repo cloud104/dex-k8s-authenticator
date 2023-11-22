@@ -16,7 +16,7 @@ container:
 	@echo "Building container image"
 	#docker build -t ${GONAME}:${TAG} .
 	docker buildx create
-	docker buildx build --push --platform linux/amd64 --platform linux/arm64 -t $(REGISTRY)/${GONAME}:${TAG} .
+	docker buildx build --push --platform linux/amd64 --platform linux/arm64 -t $(REGISTRY)/tks-login:${TAG} .
 .PHONY: clean
 clean:
 	@echo "Cleaning"
