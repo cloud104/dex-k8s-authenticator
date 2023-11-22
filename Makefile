@@ -1,6 +1,7 @@
 GOBIN=$(shell pwd)/bin
 GOFILES=$(wildcard *.go)
 GONAME=dex-k8s-authenticator
+REGISTRY=us-docker.pkg.dev/tks-gcr-pub/tks-dex-k8s-authenticator
 TAG=latest
 
 all: build 
@@ -13,12 +14,15 @@ build:
 .PHONY: container
 container:
 	@echo "Building container image"
-	docker build -t ${GONAME}:${TAG} .
+	#docker build -t ${GONAME}:${TAG} .
+	docker buildx create
+	docker buildx build --push --platform linux/amd64 --platform linux/arm64 -t $(REGISTRY)/${GONAME}:${TAG} .
 .PHONY: clean
 clean:
 	@echo "Cleaning"
 	GOBIN=$(GOBIN) go clean
 	rm -rf ./bin
+	docker buildx prune -a -f
 
 .PHONY: lint
 lint:
