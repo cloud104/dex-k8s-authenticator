@@ -1,5 +1,9 @@
 {{- if .Values.rbac.create }}
+{{- if semverCompare ">= 1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: rbac.authorization.k8s.io/v1
+{{- else -}}
 apiVersion: rbac.authorization.k8s.io/v1beta1
+{{- end }}
 kind: ClusterRole
 metadata:
   name: {{ template "dex.fullname" . }}
@@ -11,7 +15,11 @@ rules:
   verbs:
   - "*"
 ---
+{{- if semverCompare ">= 1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: rbac.authorization.k8s.io/v1
+{{- else -}}
 apiVersion: rbac.authorization.k8s.io/v1beta1
+{{- end }}
 kind: Role
 metadata:
   name: {{ template "dex.fullname" . }}
@@ -31,7 +39,11 @@ rules:
   verbs:
   - "*"
 ---
+{{- if semverCompare ">= 1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: rbac.authorization.k8s.io/v1
+{{- else -}}
 apiVersion: rbac.authorization.k8s.io/v1beta1
+{{- end }}
 kind: ClusterRoleBinding
 metadata:
   name: {{ template "dex.fullname" . }}
@@ -44,7 +56,11 @@ subjects:
   name: {{ template "dex.serviceAccountName" . }}
   namespace: {{ .Release.Namespace }}
 ---
+{{- if semverCompare ">= 1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: rbac.authorization.k8s.io/v1
+{{- else -}}
 apiVersion: rbac.authorization.k8s.io/v1beta1
+{{- end }}
 kind: RoleBinding
 metadata:
   name: {{ template "dex.fullname" . }}
