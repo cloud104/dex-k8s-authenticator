@@ -7,7 +7,7 @@ on:
 
 jobs:
   docker-build:
-    runs-on: tks-gha-runner
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
