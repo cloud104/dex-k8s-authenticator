@@ -70,7 +70,7 @@ jobs:
           kubectl get pods 
           export NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[0].address}")
       
-          echo "Testing login page with retries..."
+          echo "Testing login page..."
           ATTEMPTS=10
           DELAY=10
       
