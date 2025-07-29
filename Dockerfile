@@ -2,8 +2,8 @@ ARG ARCH
 FROM ${ARCH}golang:1.23.11-alpine3.22 AS build
 
 RUN apk --no-cache add \
-    alpine-sdk=~"1.0" \
-    bash=~"5.2.15"
+    alpine-sdk=~"1.1" \
+    bash=~"5.2.37"
 
 ENV GO111MODULE=on
 
@@ -26,9 +26,9 @@ FROM ${ARCH}alpine:3.22.1
 #
 # OpenSSL is required so wget can query HTTPS endpoints for health checking.
 RUN apk --no-cache add \
-    ca-certificates=~"20230506" \
-    openssl=~"3.1.4" \
-    curl=~"8.4.0" \
+    ca-certificates=~"20250619" \
+    openssl=~"3.5.1" \
+    curl=~"8.14.1" \
     tini=~"0.19.0"
 
 RUN mkdir -p /app/bin
