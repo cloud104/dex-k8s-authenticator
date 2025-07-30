@@ -1,10 +1,49 @@
 # Changelog
 All notable changes to this project will be documented in this file.
+
+## [v1.4.6-tks.0]
+
+### Updated
+
+- Go version and tooling:
+  - Bumped Go version and dependencies to address critical CVEs
+  - Updated `golangci-lint`, `setup-go`, and `setup-kind` GitHub Actions to latest versions
+  - Adjusted Go module version string for compatibility
+
+- Container and OS base:
+  - Updated Docker base images to latest Alpine and Go versions
+  - Upgraded essential packages: `alpine-sdk`, `bash`, `ca-certificates`, `openssl`, `curl`
+- Kubernetes compatibility:
+  - Updated Kubernetes API versions for `Ingress` and `backend` to support v1.19+
+  - Updated `dex` container image to `v2.43.1`
+
+### Added
+
+- Workflow for validating CI container builds
+- Retry mechanism in Kubernetes login page test
+
+## [v1.4.5-tks.0]
+
+### Updated
+
+- Updated Go version from `1.21.4` to `1.23.0` and specified toolchain `go1.24.1`
+- Bumped dependencies to address CVEs and improve compatibility:
+    - `golang.org/x/crypto` from `v0.15.0` to `v0.35.0`
+    - `google.golang.org/protobuf` from `v1.31.0` to `v1.33.0`
+    - `golang.org/x/sys` from `v0.14.0` to `v0.30.0`
+    - `golang.org/x/text` from `v0.14.0` to `v0.22.0`
+
+## [v1.4.4-tks.0]
+
+### Updated
+
+- Enable multi-architecture builds
+
 ## [v1.4.3-tks.0]
 
 ### Updated
 - Fix security issues reported by trivy
-- 
+
 ## [v1.4.2-tks.0]
 
 ### Updated
