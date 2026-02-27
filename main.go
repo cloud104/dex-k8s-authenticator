@@ -18,7 +18,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/coreos/go-oidc"
+	"github.com/coreos/go-oidc/v3/oidc"
 	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -103,7 +103,7 @@ func substituteEnvVars(text string) string {
 	matches := re.FindAllStringSubmatch(text, -1)
 	for _, val := range matches {
 		envVar := os.Getenv(val[1])
-		text = strings.Replace(text, val[0], envVar, -1)
+		text = strings.ReplaceAll(text, val[0], envVar)
 	}
 	return text
 }

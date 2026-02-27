@@ -1,9 +1,9 @@
 ARG ARCH
-FROM ${ARCH}golang:1.23.11-alpine3.22 AS build
+FROM ${ARCH}golang:1.25.7-alpine3.23 AS build
 
 RUN apk --no-cache add \
-    alpine-sdk=~"1.1" \
-    bash=~"5.2.37"
+    alpine-sdk=~1.1 \
+    bash=~5.3.3
 
 ENV GO111MODULE=on
 
@@ -18,7 +18,7 @@ COPY . .
 
 RUN make build
 
-FROM ${ARCH}alpine:3.22.1
+FROM ${ARCH}alpine:3.23
 
 # Dex connectors, such as GitHub and Google logins require root certificates.
 # Proper installations should manage those certificates, but it's a bad user
@@ -26,10 +26,10 @@ FROM ${ARCH}alpine:3.22.1
 #
 # OpenSSL is required so wget can query HTTPS endpoints for health checking.
 RUN apk --no-cache add \
-    ca-certificates=~"20250619" \
-    openssl=~"3.5.1" \
-    curl=~"8.14.1" \
-    tini=~"0.19.0"
+    ca-certificates=~20251003 \
+    openssl=~3.5.5 \
+    curl=~8.17.0 \
+    tini=~0.19.0
 
 RUN mkdir -p /app/bin
 COPY --from=build /app/bin/dex-k8s-authenticator /app/bin/

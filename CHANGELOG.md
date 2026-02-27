@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v1.5.0-tks.0]
+
+### Added
+
+- Kubelogin support for local kubeconfig flow
+
+### Updated
+
+- Container build and Go module dependencies
+
 ## [v1.4.6-tks.0]
 
 ### Updated
