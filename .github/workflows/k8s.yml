@@ -10,7 +10,7 @@ jobs:
     name: helm-lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: helm-lint-dex
         uses: stefanprodan/kube-tools@v1.5.0
         with:
@@ -39,11 +39,14 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: setup-kind
-        uses: engineerd/setup-kind@v0.6.2
+        uses: helm/kind-action@1544676c07bb3570fcb70166beaa07c4528fd4aa # v1.15.1
         with:
-          name: kind
+          cluster_name: kind
+          version: v0.24.0
+          kubectl_version: v1.31.0
+          wait: 300s
       - name: build-ci-image
         run: |
           docker build -t mintel/dex-k8s-authenticator:${GITHUB_SHA} .
