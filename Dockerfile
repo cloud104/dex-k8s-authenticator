@@ -2,8 +2,8 @@ ARG ARCH
 FROM ${ARCH}golang:1.25.7-alpine3.23 AS build
 
 RUN apk --no-cache add \
-    alpine-sdk=~1.1 \
-    bash=~5.3.3
+    alpine-sdk \
+    bash
 
 ENV GO111MODULE=on
 
@@ -26,10 +26,10 @@ FROM ${ARCH}alpine:3.23
 #
 # OpenSSL is required so wget can query HTTPS endpoints for health checking.
 RUN apk --no-cache add \
-    ca-certificates=~20251003 \
-    openssl=~3.5.5 \
-    curl=~8.17.0 \
-    tini=~0.19.0
+    ca-certificates \
+    openssl \
+    curl \
+    tini
 
 RUN mkdir -p /app/bin
 COPY --from=build /app/bin/dex-k8s-authenticator /app/bin/
